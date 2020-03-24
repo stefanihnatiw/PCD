@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Title goes here.</title>
+    <style></style>
+
+    <script type="text/javascript">
+
+        if ("WebSocket" in window) {
+            //alert("WebSocket is supported by your Browser!");
+
+            var ws = new WebSocket("ws://54.246.245.221:80/log.txt");
+
+            ws.onopen = function() {
+                //alert("Message is sent...");
+            };
+
+            ws.onmessage = function(evt) {
+                var received_msg = evt.data;
+                document.getElementById("log").innerHTML = received_msg;
+                //alert("Message is received...");
+            };
+
+            ws.onclose = function() {
+                //alert("Connection is closed..."); 
+            };
+
+        } else {
+            alert("WebSocket NOT supported by your Browser!");
+        }
+    </script>
+</head>
+
+<body>
+    <div>Server log</div>
+    <br>
+    <pre id="log"></pre>
+</body>
+
+</html>
